@@ -1,0 +1,25 @@
+{
+  "name": "react-native-unicorn-example",
+  "description": "Example app for react-native-unicorn",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "react": "18.1.0",
+    "react-native": "0.70.0-rc.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/runtime": "^7.12.5",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "^0.72.0",
+    "react-test-renderer": "18.1.0",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0"
+  }
+}
