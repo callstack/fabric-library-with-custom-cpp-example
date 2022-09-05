@@ -1,28 +1,15 @@
-# react-native-unicorn
-example
-## Installation
+1. Create custom cpp [folder](https://github.com/troZee/react-native-cpp-autolinking/tree/main/cpp)
+2. Add [CMake](https://github.com/troZee/react-native-cpp-autolinking/blob/main/cpp/CMakeLists.txt) to `cpp` dir
+3. Add [CMake](https://github.com/troZee/react-native-cpp-autolinking/blob/main/android/CMakeLists.txt) file to `android` dir
 
-```sh
-npm install react-native-unicorn```
+Since the fact rn cli generates [header](https://github.com/react-native-community/cli/blob/main/packages/cli-platform-android/native_modules.gradle#L342) from build folder, this Component Descriptor is not visible for autolinking module
 
-## Usage
+<img src="issue.png" alt="Issue">
 
-```js
-import { multiply } from "react-native-unicorn";
+### Questions
 
-// ...
+- how to make custom cpp implementation visible for autolinking module ?
 
-const result = await multiply(3, 7);
-```
+Even if I change import to reflect custom cpp name, it does not work too
 
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+<img src="changeimport.png" alt="Issue">

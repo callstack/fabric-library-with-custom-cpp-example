@@ -1,0 +1,149 @@
+From 9176ae6e7f691e1154c7cfac9a9db09db82e7cbd Mon Sep 17 00:00:00 2001
+From: Piotr Trocki <piotr@trocki.com>
+Date: Mon, 5 Sep 2022 13:15:34 +0200
+Subject: [PATCH] wip
+
+---
+ android/CMakeLists.txt                            | 10 ++++++++++
+ android/build.gradle                              | 11 +++++++++++
+ .../reactnativeunicorn/UnicornViewPackage.java    |  1 +
+ cpp/CMakeLists.txt                                | 15 +++++++++++++++
+ .../ComponentDescriptors.h                        |  0
+ .../UnicornViewSpec => unicorn}/EventEmitters.cpp |  0
+ .../UnicornViewSpec => unicorn}/EventEmitters.h   |  0
+ .../UnicornViewSpec => unicorn}/Props.cpp         |  0
+ .../UnicornViewSpec => unicorn}/Props.h           |  0
+ .../RCTComponentViewHelpers.h                     |  0
+ .../UnicornViewSpec => unicorn}/ShadowNodes.cpp   |  0
+ .../UnicornViewSpec => unicorn}/ShadowNodes.h     |  0
+ .../UnicornViewState.cpp                          |  0
+ .../UnicornViewState.h                            |  0
+ 14 files changed, 37 insertions(+)
+ create mode 100644 android/CMakeLists.txt
+ create mode 100644 cpp/CMakeLists.txt
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/ComponentDescriptors.h (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/EventEmitters.cpp (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/EventEmitters.h (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/Props.cpp (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/Props.h (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/RCTComponentViewHelpers.h (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/ShadowNodes.cpp (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/ShadowNodes.h (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/UnicornViewState.cpp (100%)
+ rename cpp/{react/renderer/components/UnicornViewSpec => unicorn}/UnicornViewState.h (100%)
+
+diff --git a/android/CMakeLists.txt b/android/CMakeLists.txt
+new file mode 100644
+index 0000000..b8810de
+--- /dev/null
++++ b/android/CMakeLists.txt
+@@ -0,0 +1,10 @@
++cmake_minimum_required(VERSION 3.13)
++
++set (CMAKE_VERBOSE_MAKEFILE ON)
++set (CMAKE_CXX_STANDARD 11)
++
++file(GLOB unicorn_SRC CONFIGURE_DEPENDS ../cpp/unicorn/*.cpp)
++add_library(unicorn STATIC ${unicorn_SRC})
++
++# Specifies a path to native header files.
++include_directories(${unicorn_SRC})
+diff --git a/android/build.gradle b/android/build.gradle
+index 32c8a67..cb4ce9c 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -34,6 +34,17 @@ android {
+     minSdkVersion getExtOrIntegerDefault('minSdkVersion')
+     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+     buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
++    externalNativeBuild {
++        cmake {
++            cppFlags "-O2 -frtti -fexceptions -Wall -fstack-protector-all"
++            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
++        }
++    }
++  }
++       externalNativeBuild {
++      cmake {
++          path "CMakeLists.txt"
++      }
+   }
+ 
+   sourceSets {
+diff --git a/android/src/main/java/com/reactnativeunicorn/UnicornViewPackage.java b/android/src/main/java/com/reactnativeunicorn/UnicornViewPackage.java
+index 919e75b..5fd8223 100644
+--- a/android/src/main/java/com/reactnativeunicorn/UnicornViewPackage.java
++++ b/android/src/main/java/com/reactnativeunicorn/UnicornViewPackage.java
+@@ -13,6 +13,7 @@ public class UnicornViewPackage implements ReactPackage {
+   @Override
+   public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+     List<ViewManager> viewManagers = new ArrayList<>();
++    System.loadLibrary("unicorn");
+     viewManagers.add(new UnicornViewManager(reactContext));
+     return viewManagers;
+   }
+diff --git a/cpp/CMakeLists.txt b/cpp/CMakeLists.txt
+new file mode 100644
+index 0000000..547c2b8
+--- /dev/null
++++ b/cpp/CMakeLists.txt
+@@ -0,0 +1,15 @@
++cmake_minimum_required(VERSION 3.13)
++set(CMAKE_VERBOSE_MAKEFILE on)
++
++add_compile_options(
++        -fexceptions
++        -frtti
++        -std=c++17
++        -Wall
++        -Wpedantic
++        -Wno-gnu-zero-variadic-macro-arguments)
++
++file(GLOB unicorn_SRC CONFIGURE_DEPENDS unicorn/*.cpp)
++add_library(unicorn STATIC ${unicorn_SRC})
++
++target_include_directories(unicorn PUBLIC .)
+\ No newline at end of file
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/ComponentDescriptors.h b/cpp/unicorn/ComponentDescriptors.h
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/ComponentDescriptors.h
+rename to cpp/unicorn/ComponentDescriptors.h
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/EventEmitters.cpp b/cpp/unicorn/EventEmitters.cpp
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/EventEmitters.cpp
+rename to cpp/unicorn/EventEmitters.cpp
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/EventEmitters.h b/cpp/unicorn/EventEmitters.h
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/EventEmitters.h
+rename to cpp/unicorn/EventEmitters.h
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/Props.cpp b/cpp/unicorn/Props.cpp
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/Props.cpp
+rename to cpp/unicorn/Props.cpp
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/Props.h b/cpp/unicorn/Props.h
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/Props.h
+rename to cpp/unicorn/Props.h
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/RCTComponentViewHelpers.h b/cpp/unicorn/RCTComponentViewHelpers.h
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/RCTComponentViewHelpers.h
+rename to cpp/unicorn/RCTComponentViewHelpers.h
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/ShadowNodes.cpp b/cpp/unicorn/ShadowNodes.cpp
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/ShadowNodes.cpp
+rename to cpp/unicorn/ShadowNodes.cpp
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/ShadowNodes.h b/cpp/unicorn/ShadowNodes.h
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/ShadowNodes.h
+rename to cpp/unicorn/ShadowNodes.h
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/UnicornViewState.cpp b/cpp/unicorn/UnicornViewState.cpp
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/UnicornViewState.cpp
+rename to cpp/unicorn/UnicornViewState.cpp
+diff --git a/cpp/react/renderer/components/UnicornViewSpec/UnicornViewState.h b/cpp/unicorn/UnicornViewState.h
+similarity index 100%
+rename from cpp/react/renderer/components/UnicornViewSpec/UnicornViewState.h
+rename to cpp/unicorn/UnicornViewState.h
+-- 
+2.31.0
+
