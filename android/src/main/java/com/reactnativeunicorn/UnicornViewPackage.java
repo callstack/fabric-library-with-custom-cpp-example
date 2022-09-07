@@ -13,7 +13,6 @@ public class UnicornViewPackage implements ReactPackage {
   @Override
   public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
     List<ViewManager> viewManagers = new ArrayList<>();
-    System.loadLibrary("unicorn");
     viewManagers.add(new UnicornViewManager(reactContext));
     return viewManagers;
   }

@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.module.annotations.ReactModule;
+import com.facebook.react.uimanager.ReactStylesDiffMap;
 import com.facebook.react.uimanager.SimpleViewManager;
+import com.facebook.react.uimanager.StateWrapper;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.ViewManagerDelegate;
@@ -15,6 +17,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.viewmanagers.UnicornViewManagerDelegate;
 import com.facebook.react.viewmanagers.UnicornViewManagerInterface;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -26,6 +29,13 @@ public class UnicornViewManager extends ViewGroupManager<UnicornView> implements
 
   public UnicornViewManager(ReactApplicationContext context) {
     mDelegate = new UnicornViewManagerDelegate(this);
+  }
+
+  @Nullable
+  @Override
+  public Object updateState(@NonNull UnicornView view, ReactStylesDiffMap props, StateWrapper stateWrapper) {
+    view.getFabricViewStateManager().setStateWrapper(stateWrapper);
+    return super.updateState(view, props, stateWrapper);
   }
 
   @Nullable
