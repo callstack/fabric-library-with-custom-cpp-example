@@ -150,12 +150,11 @@
     ]
   },
   "codegenConfig": {
-    "libraries": [
-      {
-        "name": "UnicornViewSpec",
-        "type": "components",
-        "jsSrcsDir": "src"
-      }
-    ]
+    "name": "unicorn",
+    "type": "components",
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "com.reactnativeunicorn"
+    }
   }
 }
