@@ -4,7 +4,6 @@
 #include <fbjni/fbjni.h>
 #include <react/renderer/componentregistry/ComponentDescriptorProviderRegistry.h>
 #include <react/renderer/components/rncore/ComponentDescriptors.h>
-#include <react/renderer/components/unicornview/ComponentDescriptors.h>
 #include <rncli.h>
 
 namespace facebook {
@@ -24,7 +23,6 @@ MainComponentsRegistry::sharedProviderRegistry() {
   //
   // providerRegistry->add(concreteComponentDescriptorProvider<
   //        AocViewerComponentDescriptor>());
-  providerRegistry->add(concreteComponentDescriptorProvider<UnicornViewComponentDescriptor>());
   return providerRegistry;
 }
 

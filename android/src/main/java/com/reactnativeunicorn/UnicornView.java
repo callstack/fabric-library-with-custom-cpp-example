@@ -12,7 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class UnicornView extends ViewGroup {
+import com.facebook.react.uimanager.FabricViewStateManager;
+
+public class UnicornView extends ViewGroup implements FabricViewStateManager.HasFabricViewStateManager  {
+
+  private FabricViewStateManager mFabricViewStateManager = new FabricViewStateManager();
 
   public UnicornView(Context context) {
     super(context);
@@ -29,5 +33,10 @@ public class UnicornView extends ViewGroup {
   @Override
   protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
 
+  }
+
+  @Override
+  public FabricViewStateManager getFabricViewStateManager() {
+    return mFabricViewStateManager;
   }
 }

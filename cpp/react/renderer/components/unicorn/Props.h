@@ -15,7 +15,7 @@
 namespace facebook {
 namespace react {
 
-class UnicornViewProps final : public ViewProps {
+class JSI_EXPORT UnicornViewProps final : public ViewProps {
  public:
   UnicornViewProps() = default;
   UnicornViewProps(const PropsParserContext& context, const UnicornViewProps &sourceProps, const RawProps &rawProps);

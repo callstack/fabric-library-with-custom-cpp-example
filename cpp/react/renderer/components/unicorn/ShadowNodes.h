@@ -16,12 +16,12 @@
 namespace facebook {
 namespace react {
 
-extern const char UnicornViewComponentName[];
+JSI_EXPORT extern const char UnicornViewComponentName[];
 
 /*
  * `ShadowNode` for <ScrollView> component.
  */
-class UnicornViewShadowNode final : public ConcreteViewShadowNode<
+class JSI_EXPORT UnicornViewShadowNode final : public ConcreteViewShadowNode<
 UnicornViewComponentName,
 UnicornViewProps,
 UnicornViewEventEmitter,

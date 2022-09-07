@@ -1,15 +1,23 @@
-1. Create custom cpp [folder](https://github.com/troZee/react-native-cpp-autolinking/tree/main/cpp)
-2. Add [CMake](https://github.com/troZee/react-native-cpp-autolinking/blob/main/cpp/CMakeLists.txt) to `cpp` dir
-3. Add [CMake](https://github.com/troZee/react-native-cpp-autolinking/blob/main/android/CMakeLists.txt) file to `android` dir
+# How to link custom cpp files in RN 70?
 
-Since the fact rn cli generates [header](https://github.com/react-native-community/cli/blob/main/packages/cli-platform-android/native_modules.gradle#L342) from build folder, this Component Descriptor is not visible for autolinking module
+## Android
 
-<img src="issue.png" alt="Issue">
+Linking custom cpp to Android lib is kinda difficult. Here you can how to make it:
+[link](https://github.com/troZee/react-native-cpp-autolinking/commit/5e1b0f2171490a435b540271588b34ca98287801)
 
-### Questions
+## iOS
 
-- how to make custom cpp implementation visible for autolinking module ?
+Replace
 
-Even if I change import to reflect custom cpp name, it does not work too
+```
+s.source_files = "ios/**/*.{h,m,mm}"
+```
 
-<img src="changeimport.png" alt="Issue">
+with
+
+```
+s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{h,cpp}"
+
+```
+
+In podspec file
