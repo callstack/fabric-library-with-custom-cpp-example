@@ -3,7 +3,7 @@ module.exports = {
     platforms: {
       android: {
         componentDescriptors: ['UnicornViewComponentDescriptor'],
-        androidMkPath: "../cpp/Android.mk"
+        cmakeListsPath: "../cpp/CMakeLists.txt"
       },
     },
   },
