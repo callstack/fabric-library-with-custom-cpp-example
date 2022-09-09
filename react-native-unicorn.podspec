@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/MateWW/react-native-unicorn.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{h,cpp}"
-
+  s.exclude_files = "cpp/unicorn.cpp", "cpp/unicorn.h"
   s.dependency "React-Core"
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
