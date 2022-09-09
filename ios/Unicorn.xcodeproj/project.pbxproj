@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* Unicorn.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* Unicorn.m */; };
+		CD3D833428CB4A8900D1D14B /* UnicornViewManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD3D833228CB4A8900D1D14B /* UnicornViewManager.mm */; };
+		CD3D833528CB4A8900D1D14B /* UnicornView.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD3D833328CB4A8900D1D14B /* UnicornView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,8 +25,9 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libUnicorn.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUnicorn.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* Unicorn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unicorn.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* Unicorn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unicorn.m; sourceTree = "<group>"; };
+		CD3D833128CB4A8900D1D14B /* UnicornView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnicornView.h; sourceTree = "<group>"; };
+		CD3D833228CB4A8900D1D14B /* UnicornViewManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnicornViewManager.mm; sourceTree = "<group>"; };
+		CD3D833328CB4A8900D1D14B /* UnicornView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnicornView.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +52,9 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				B3E7B5881CC2AC0600A0062D /* Unicorn.h */,
-				B3E7B5891CC2AC0600A0062D /* Unicorn.m */,
+				CD3D833128CB4A8900D1D14B /* UnicornView.h */,
+				CD3D833328CB4A8900D1D14B /* UnicornView.mm */,
+				CD3D833228CB4A8900D1D14B /* UnicornViewManager.mm */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,7 +116,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* Unicorn.m in Sources */,
+				CD3D833428CB4A8900D1D14B /* UnicornViewManager.mm in Sources */,
+				CD3D833528CB4A8900D1D14B /* UnicornView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

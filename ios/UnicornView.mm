@@ -1,10 +1,10 @@
 #ifdef RCT_NEW_ARCH_ENABLED
 #import "UnicornView.h"
 
-#import <react/renderer/components/UnicornViewSpec/ComponentDescriptors.h>
-#import <react/renderer/components/UnicornViewSpec/EventEmitters.h>
-#import <react/renderer/components/UnicornViewSpec/Props.h>
-#import <react/renderer/components/UnicornViewSpec/RCTComponentViewHelpers.h>
+#import "../cpp/react/renderer/components/unicorn/ComponentDescriptors.h"
+#import "../cpp/react/renderer/components/unicorn/EventEmitters.h"
+#import "../cpp/react/renderer/components/unicorn/Props.h"
+#import "../cpp/react/renderer/components/unicorn/RCTComponentViewHelpers.h"
 
 #import "RCTFabricComponentsPlugins.h"
 
@@ -35,6 +35,10 @@ using namespace facebook::react;
   }
 
   return self;
+}
+
+- (void)updateState:(const facebook::react::State::Shared &)state oldState:(const facebook::react::State::Shared &)oldState {
+    NSLog(@"Update State");
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
