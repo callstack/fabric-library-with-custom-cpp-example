@@ -22,6 +22,4 @@ Here you can see how to make it:
 
 ### iOS
 
-Replace `s.source_files = "ios/**/*.{h,m,mm}"` with `s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{h,cpp}"` inside `yourLib.podspec` file
-
-And change imports inside `.mm` [file](https://github.com/callstack/fabric-library-with-custom-cpp/commit/12561736b58837cd4783f55c3af20e67b40219c3#diff-9d18bbaec12252e635b26e515dd1616123b8b02def6291bfefceb645f4e5264fL4)
+Replace `s.source_files = "ios/**/*.{h,m,mm}"` with `s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{h,cpp}"` inside `yourLib.podspec` file and change imports inside `.mm` [file](https://github.com/callstack/fabric-library-with-custom-cpp/commit/12561736b58837cd4783f55c3af20e67b40219c3#diff-9d18bbaec12252e635b26e515dd1616123b8b02def6291bfefceb645f4e5264fL4)
