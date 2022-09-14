@@ -2,7 +2,7 @@
 
 ## Description
 
-Probably you will not need this template, since fabric is responsible for whole synchronous measurements under the hood. But in some cases, your native component would like to update its frames in synchronous [way](https://reactnative.dev/architecture/render-pipeline). Right now, codegen does not support generating a new state based on typescript implementation, hence custom state implementation must be added manually. Linking custom cpp can be tricky, so together with [@cortinico](https://github.com/cortinico) we prepared a showcase, so you can reuse that approach in your library. This example has been built on top of [bob-builder](https://github.com/callstack/react-native-builder-bob)
+Probably you will not need this template, since fabric is responsible for whole synchronous measurements under the hood. But in some cases, your native component would like to update its frames in synchronous [way](https://reactnative.dev/architecture/render-pipeline). Right now, codegen does not support generating a new state based on typescript implementation, hence custom state implementation must be added manually. Linking custom cpp can be tricky, so together with [@cortinico](https://github.com/cortinico) we prepared a showcase, so you can reuse this approach in your library. This example has been built on top of [bob-builder](https://github.com/callstack/react-native-builder-bob)
 
 More context you can find [here](https://github.com/reactwg/react-native-new-architecture/discussions/71#discussioncomment-3606598)
 
@@ -11,6 +11,7 @@ More context you can find [here](https://github.com/reactwg/react-native-new-arc
 - run [codegen](https://reactnative.dev/docs/new-architecture-library-android#1-extend-or-implement-the-code-generated-native-interfaces) `./gradlew generateCodegenArtifactsFromSchema` in android folder
 - copy everything under `build/generated/source/codegen/jni/react/renderer/components/yourlib` into [cpp](https://github.com/callstack/fabric-library-with-custom-cpp/tree/main/cpp) folder
 - pass `interfaceOnly` [flag](https://github.com/callstack/fabric-library-with-custom-cpp/blob/main/src/UnicornViewNativeComponent.ts#L23)
+- run codegen once again
 - implement cpp state
 
 ## How to link custom cpp state in RN 70?
@@ -18,7 +19,7 @@ More context you can find [here](https://github.com/reactwg/react-native-new-arc
 ### Android
 
 Here you can see how to make it:
-[link](https://github.com/callstack/fabric-library-with-custom-cpp/commit/5e1b0f2171490a435b540271588b34ca98287801)
+[link](https://github.com/callstack/fabric-library-with-custom-cpp/commit/5e1b0f2171490a435b540271588b34ca98287801). Instead of `AndroidMkPath` , please add `CMakePath` to [react-native.config.js](https://github.com/callstack/fabric-library-with-custom-cpp-example/blob/main/react-native.config.js#L6)
 
 ### iOS
 
