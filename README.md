@@ -1,5 +1,9 @@
 # Example fabric library with custom cpp state implementation
 
+## ⚠️⚠️⚠️ UPDATE ⚠️⚠️⚠️
+
+This repository has been archived in favour of official [solution](https://github.com/react-native-community/RNNewArchitectureLibraries/tree/feat/component-with-state#fabric-component-implement-cxx-state). Thanks to great efforts from the core team this temporary repository is no longer necessary.
+
 ## Description
 
 Probably you will not need this template, since fabric is responsible for whole synchronous measurements under the hood. But in some cases, your native component would like to update its frames in synchronous [way](https://reactnative.dev/architecture/render-pipeline). Right now, codegen does not support generating a new state based on typescript implementation, hence custom state implementation must be added manually. Linking custom cpp can be tricky, so together with [@cortinico](https://github.com/cortinico) we prepared a showcase, so you can reuse this approach in your library. This example has been built on top of [bob-builder](https://github.com/callstack/react-native-builder-bob)
